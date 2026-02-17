@@ -1,0 +1,117 @@
+Kind: captions
+Language: es
+Hola en este proceso de diseño y
+planificación en el que nos encontramos
+vamos a comenzar a dar forma al curso
+revisando las opciones del formulario de
+configuración al cual accedemos desde el
+menú contextual cuando estamos en la
+página principal del curso aquí nos
+encontramos con una serie de apartados
+vamos a a comenzar con los apartados
+general y descripción los primeros
+Campos del apartado general son el
+nombre completo del curso y el nombre
+corto del curso en el caso de Gela estos
+nombres vienen dados por los datos de
+gaur pero se pueden modificar dnde dónde
+van a aparecer estos nombres Pues el
+nombre completo del curso aparece en la
+página principal del curso en la parte
+superior y también aparecerá en los
+listados de de curso en la página
+principal y asim mismo en el área
+personal el nombre corto aparece
+fundamentalmente en la ruta de
+navegación o camino de migas que aparece
+cuando accedemos a un apartado del curso
+este enlace nos permite recuperar la
+página principal del curso algo que
+también podemos hacer en todo momento
+desde este Enlace del índice un campo
+muy importante es el de visibilidad del
+curso podemos mantener el curso oculto
+mientr lo estamos configurando pero
+Tendremos que cambiar el valor a mostrar
+cuando queramos que el alumnado entre o
+queramos mandar mensajes desde el foro
+en cuanto a las fechas destacar que la
+fecha de finalización es siempre la de
+finalización del curso mientras que la
+fecha de inicio viene dada por el
+cuatrimestre pero se puede modificar
+para ajustarse a la situación específica
+de cada asignatura finalmente tenemos el
+número de ID este curso no tiene por ser
+un curso de ejemplo pero en las
+asignaturas reales Este sí que es
+invariable y está relacionado con el
+código de gaur en la asignatura a
+continuación tenemos el apartado de
+descripción con los campos resumen del
+curso y archivos de resumen del curso
+hay que advertir que la información de
+estos Campos no se muestra en la página
+principal y solo aparece en área
+personal si se modifica la vista del
+panel vista
+general a continuación tenemos el
+apartado de formato del curso donde
+podremos escoger entre el formato de
+temas que es el que viene por defecto y
+el cual podemos modificar en el cual
+podemos modificar los títulos de los
+temas También tenemos el el formato
+semanal en el cual los títulos de las
+secciones o temas se sustituirán Por las
+fechas de las semanas finalmente tenemos
+el tema de pestañas que nos permite
+crear una navegación horizontal en este
+caso recomendamos sustituir la pestaña
+del módulo cero por una encima de las
+pestañas de esta manera contaremos
+siempre con la opción de mostrar
+elementos de soporte en la parte
+superior tenemos a continuación la
+opción de forzar el idioma si elegimos
+activar esta opción desaparecerá el menú
+de selección de idioma dentro del curso
+y todos los elementos de navegación se
+mostrarán en el idioma escogido hay
+otras opciones que pueden resultar
+interesantes Como por ejemplo Mostrar
+los plazos de entrega de las actividades
+el apartado rastreo de finalización no
+está activado por defecto pero es el que
+tenemos que activar Si queremos que el
+alumnado pueda ver su Progreso en el
+curso condicionar el acceso a
+determinados apartados en función de si
+se han cumplido o no condiciones
+establecidas en actividades o recursos
+anteriores el último apartado que vamos
+a comentar en este formulario es el de
+la configuración del modo de grupo esta
+configuración se puede hacer a nivel de
+curso o a nivel de actividad como
+veremos en un vídeo más adelante
+volvemos a la página principal del curso
+donde si tenemos la edición activada
+aparecerá esta opción de bloques del
+curso por defecto los cursos vienen con
+tienen desplegado el bloque declaración
+de contenidos para hacer una relación de
+contenidos no propios incluidos en en el
+curso este bloque no puede verlo el
+alumnado si desplegamos el listado de
+bloques disponibles podemos destacar el
+bloque estado de finalización que
+permite al alumnado controlar su
+progreso y tiene también una vista
+general de estud estudiantes para el
+profesorado el bloque de most student
+para poder alternar la vista del docente
+con un usuario de pruebas con rol
+estudiante o el bloque texto que permite
+incluir contenido usando las opciones
+del editor Muchas gracias
