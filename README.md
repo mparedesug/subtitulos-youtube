@@ -25,10 +25,18 @@ Uso:
 Web app demo
 ------------
 
-- Levantar servidor Flask (usa `PORT` si quieres cambiar el puerto):
-  `PORT=8000 python app.py`
+- Levantar el servidor Flask (puerto por defecto: 5000):
+  - Activando el virtualenv (PowerShell):
+    ```powershell
+    .\.venv\Scripts\Activate.ps1
+    python app.py
+    ```
+  - Ejecutar en otro puerto (ej. 5001):
+    - PowerShell: `$env:PORT=5001; python app.py`
+    - CMD: `set PORT=5001 && python app.py`
 
-- Abre http://localhost:8000 y pega la URL del vídeo, pulsa "Obtener subtítulos".
+- Comprobar en el navegador:
+  - Abre `http://localhost:5000` (o `http://localhost:5001` si cambiaste el puerto), pega la URL del vídeo cuyos subtítulos quieras obtener en la caja y pulsa **Obtener subtítulos**. Por defecto, aparece la URL del ejemplo: `https://youtu.be/tYqehyG2K38`, pero se puede probar con cualquier otra URL de YouTube, como por ejemplo `https://www.youtube.com/watch?v=onpLmf3977o`.
 
 Notes:
 - El script usa `yt-dlp` (instalado en el virtualenv) invocado como `python -m yt_dlp` para mayor portabilidad.

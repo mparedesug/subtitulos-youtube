@@ -16,7 +16,7 @@ import tempfile
 import shutil
 import json
 from glob import glob
-from flask import Flask, request, jsonify, send_from_directory, render_template_string
+from flask import Flask, request, jsonify, send_from_directory, render_template
 from yt_dlp import YoutubeDL
 
 # reuse helpers from download_subs
@@ -24,81 +24,10 @@ from download_subs import extract_plain_from_vtt, extract_plain_from_srt
 
 app = Flask(__name__, static_folder="static", template_folder="templates")
 
-INDEX_HTML = """<!doctype html>
-<html lang="es">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Captions Fetcher</title>
-  <style>
-    body { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; max-width: 800px; margin: 2rem auto; padding: 0 1rem; }
-    textarea { width: 100%; height: 300px; }
-    input[type=text] { width: 80%; }
-    button { padding: 6px 12px; }
-    .meta { color: #666; margin-top: .5rem }
-    .err { color: #b00020 }
-  </style>
-</head>
-<body>
-  <h1>Obtener subtítulos (yt-dlp)</h1>
-  <p>Introduce la URL del vídeo y pulsa <strong>Obtener subtítulos</strong>. El servidor ejecutará yt-dlp y devolverá el texto plano de los subtítulos.</p>
-
-  <div>
-    <input id="url" type="text" placeholder="https://youtu.be/..." value="https://youtu.be/tYqehyG2K38" />
-    <select id="lang"><option value="es" selected>es</option></select>
-    <button id="go">Obtener subtítulos</button>
-  </div>
-  <div class="meta" id="meta"></div>
-  <div class="err" id="err"></div>
-  <h2>Subtítulos</h2>
-  <textarea id="out" readonly></textarea>
-
-<script>
-const btn = document.getElementById('go');
-const urlInput = document.getElementById('url');
-const langSel = document.getElementById('lang');
-const out = document.getElementById('out');
-const meta = document.getElementById('meta');
-const err = document.getElementById('err');
-
-btn.addEventListener('click', async () => {
-  err.textContent = '';
-  out.value = '';
-  meta.textContent = 'Obteniendo...';
-  btn.disabled = true;
-  try {
-    const res = await fetch('/api/captions', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ url: urlInput.value, lang: langSel.value })
-    });
-    const data = await res.json();
-    if (!res.ok) {
-      err.textContent = data.error || 'Error desconocido';
-      meta.textContent = '';
-    } else {
-      meta.textContent = `Idioma detectado: ${data.lang || 'unknown'}`;
-      out.value = data.text || '';
-      // show note if backend warns about rate-limit
-      if (data.note) {
-        err.textContent = data.note;
-      }
-    }
-  } catch (e) {
-    err.textContent = e.message;
-  } finally {
-    btn.disabled = false;
-  }
-});
-</script>
-</body>
-</html>
-"""
-
 
 @app.route("/")
 def index():
-    return render_template_string(INDEX_HTML)
+    return render_template("index.html")
 
 
 @app.route("/api/captions", methods=["POST"])

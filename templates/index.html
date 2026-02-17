@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Captions Fetcher</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="card">
+    <header class="card__header">
+      <div class="logo">▶</div>
+      <div>
+        <h1>Captions Fetcher</h1>
+        <p class="subtitle">Obtén los subtítulos de cualquier vídeo de YouTube al instante</p>
+      </div>
+    </header>
+
+    <div class="card__body">
+      <div class="input-row">
+        <input id="url" type="text" class="input-url" placeholder="https://youtu.be/..." value="https://youtu.be/tYqehyG2K38" />
+        <select id="lang" class="select-lang">
+          <option value="es" selected>🇪🇸</option>
+        </select>
+        <button id="go" class="btn-primary">Obtener subtítulos</button>
+      </div>
+
+      <div id="status-bar" class="status-bar hidden">
+        <span class="spinner"></span>
+        <span id="meta"></span>
+      </div>
+
+      <div id="err" class="alert alert--error hidden"></div>
+
+      <div class="output-section">
+        <div class="output-header">
+          <label for="out">Subtítulos</label>
+          <button id="copy" class="btn-ghost hidden" title="Copiar al portapapeles">📋 Copiar</button>
+        </div>
+        <textarea id="out" readonly placeholder="Aquí aparecerá el texto plano de los subtítulos..."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const btn     = document.getElementById('go');
+    const copyBtn = document.getElementById('copy');
+    const urlInput = document.getElementById('url');
+    const langSel  = document.getElementById('lang');
+    const out      = document.getElementById('out');
+    const meta     = document.getElementById('meta');
+    const err      = document.getElementById('err');
+    const statusBar = document.getElementById('status-bar');
+
+    function showError(msg) {
+      err.textContent = msg;
+      err.classList.remove('hidden');
+    }
+    function hideError() { err.classList.add('hidden'); }
+    const spinner = statusBar.querySelector('.spinner');
+    function showStatus(msg) {
+      meta.textContent = msg;
+      spinner.classList.remove('hidden');
+      statusBar.classList.remove('hidden');
+    }
+    function showSuccess(msg) {
+      meta.textContent = msg;
+      spinner.classList.add('hidden');
+      statusBar.classList.remove('hidden');
+    }
+    function hideStatus() { statusBar.classList.add('hidden'); }
+
+    btn.addEventListener('click', async () => {
+      hideError();
+      out.value = '';
+      copyBtn.classList.add('hidden');
+      showStatus('Obteniendo subtítulos…');
+      btn.disabled = true;
+
+      try {
+        const res = await fetch('/api/captions', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ url: urlInput.value, lang: langSel.value })
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          showError(data.error || 'Error desconocido');
+          hideStatus();
+        } else {
+          showSuccess(`✅ Idioma detectado: ${data.lang || 'unknown'}`);
+          out.value = data.text || '';
+          if (out.value) copyBtn.classList.remove('hidden');
+          if (data.note) showError(`⚠️ ${data.note}`);
+        }
+      } catch (e) {
+        showError(e.message);
+        hideStatus();
+      } finally {
+        btn.disabled = false;
+      }
+    });
+
+    copyBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText(out.value).then(() => {
+        copyBtn.textContent = '✅ Copiado';
+        setTimeout(() => { copyBtn.textContent = '📋 Copiar'; }, 2000);
+      });
+    });
+  </script>
+</body>
+</html>
